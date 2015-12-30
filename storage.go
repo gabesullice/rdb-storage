@@ -142,6 +142,7 @@ func OpenSession(settings ...StorageConfig) {
 		Address:  "localhost:28015",
 		Database: "",
 		MaxIdle:  10,
+		MaxOpen:  10,
 		Timeout:  time.Second * 10,
 	}
 
