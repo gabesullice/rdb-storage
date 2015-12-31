@@ -69,10 +69,10 @@ func GetByName(db string, table string, name string, result interface{}) error {
 	}
 }
 
-func Update(db string, table string, name string, data interface{}) error {
+func Update(db string, table string, id string, data interface{}) error {
 	res, err := r.DB(db).
 		Table(table).
-		GetAllByIndex("name", name).
+		Get(id).
 		Update(data).
 		RunWrite(getSession())
 
