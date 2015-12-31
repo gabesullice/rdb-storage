@@ -81,7 +81,7 @@ func Update(db string, table string, id string, data interface{}) error {
 		return e.ErrDatabase
 	}
 
-	if res.Updated != 1 {
+	if res.Updated != 1 && res.Replaced != 1 {
 		log.Printf("Unexpected Update Result\nOrganization: %+v\nDB Response: %+v", data, res)
 	}
 
