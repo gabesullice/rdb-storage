@@ -53,6 +53,14 @@ func GetAll(db string, table string, result interface{}) error {
 	return res.All(result)
 }
 
+func GetOne(db string, table string, id string, result interface{}) error {
+	if res, err := r.DB(db).Table(table).Get(id).Run(getSession()); err != nil {
+		return err
+	} else {
+		return res.One(result)
+	}
+}
+
 func GetByName(db string, table string, name string, result interface{}) error {
 	if res, err := r.DB(db).Table(table).GetAllByIndex("name", name).Run(getSession()); err != nil {
 		return err
