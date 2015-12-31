@@ -88,6 +88,19 @@ func Update(db string, table string, name string, data interface{}) error {
 	return nil
 }
 
+func Delete(db string, table string, id string) error {
+	res, err := r.DB(db).Table(table).Get(id).Delete().RunWrite(getSession())
+	if err != nil {
+		return err
+	}
+
+	if res.Deleted == 0 {
+		return e.ErrEntityNotFound
+	}
+
+	return nil
+}
+
 func DeleteByName(db string, table string, name string) error {
 	res, err := r.DB(db).Table(table).GetAllByIndex("name", name).RunWrite(getSession())
 	if err != nil {
